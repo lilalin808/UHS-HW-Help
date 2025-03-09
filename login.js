@@ -41,7 +41,7 @@ signUp.addEventListener("click", (event) => {
       const docRef = doc(db, "users", user.uid);
       setDoc(docRef, userData)
         .then(() => {
-          window.location.href = "login.html";  // Redirect to login page
+          window.location.href = "homepage.html";  // Redirect to login page
         })
         .catch((error) => {
           console.error("Error writing document", error);
