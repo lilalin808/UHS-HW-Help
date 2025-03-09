@@ -78,7 +78,7 @@ signIn.addEventListener("click", (event) => {
       showMessage("login is successful", "signInMessage");
       const user = userCredential.user;
       localStorage.setItem("loggedInUserId", user.uid);
-      window.location.href = "homepage.html";
+      window.location.href = "https://lilalin808.github.io/UHS-HW-Help/homepage.html";
     })
     .catch((error) => {
       const errorCode = error.code;
