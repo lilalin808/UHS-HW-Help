@@ -4,22 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Homepage</title>
-
+<link rel="stylesheet" href="styles/homepage.css"></style>
+    <script type="module" src="homepage.js"></script>
   </head>
   <body>
     <div class="container">
-      <h1>Homework Help</h1>
+      <h1>UHS Homework Help</h1>
       <form id="questionForm">
         <label for="question">Enter your homework question:</label>
         <textarea id="question" name="question" rows="4" required></textarea>
         <button type="submit" id="submit">Submit Question</button>
       </form>
     </div>
-    <h2>Submitted Questions</h2>
-    <ul id="questionsList"></ul>
+    <h2>my Questions</h2>
+    <ul id="myQuestionsList"></ul>
     <!-- For displaying the user's own questions -->
-    <p>my questions</p>
-    <ul id="questionsList"></ul>
+    <p>submitted questions</p>
+    <ul id="submittedQuestionsList"></ul>
 
     <script src="homepage.js"></script>
     <div>Email: <span id="loggedUserEmail"></span></div>
@@ -35,7 +36,5 @@
     <div id="questionMessage" style="display: none"></div>
 
     <div id="replyMessage"></div>
-        <script type="module" src="homepage.js"></script>
-
   </body>
 </html>
