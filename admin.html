@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Page</title>
+    <script type="module" src="admin.js"></script>
+
+</head>
+<body>
+  <h1>Admin Panel</h1>
+  
+  <div id="adminMessage"></div>
+  
+  <form id="assignRoleForm">
+    <label for="email">Email:</label>
+    <input type="email" id="email" required>
+    
+    <label for="role">Role:</label>
+    <select id="role">
+      <option value="tutor">Tutor</option>
+      <option value="student">Student</option>
+      <option value="admin">Admin</option>
+    </select>
+    
+    <button type="submit" id="assignRoleBtn">Assign Role</button>
+  </form>
+  <div id="usersList"></div>
+
+</body>
+</html>
