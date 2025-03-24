@@ -117,16 +117,26 @@ async function loadQuestions() {
 
       // Create a new div for each question
       const li = document.createElement("div");
-      li.textContent = question;
+      li.type = "container";
       li.id = `question-${questionId}`; // Give the question div an ID
+      li.classList.add("questionContainer");
 
-      const questionText = document.createElement("span");
+      li.textContent = question;
+      const questionText = document.createElement("div");
       questionText.textContent = question;
+      questionText.id = "questionText";
 
       const editButton = document.createElement("button");
-      editButton.textContent = "Edit";
       const deleteButton = document.createElement("button");
-      deleteButton.textContent = "Delete";
+
+      // Add icons to the buttons
+      editButton.innerHTML =
+        '<div id="editButton"><i class="fas fa-edit"></i></div>'; // Edit icon
+      deleteButton.innerHTML = '<i class="fas fa-trash"></i>'; // Delete icon
+
+      // Add classes to style the buttons
+      editButton.classList.add("edit-btn");
+      deleteButton.classList.add("delete-btn");
 
       // Show the Edit and Delete buttons only if the logged-in user is the author
       if (user && user.uid === userId) {
@@ -157,14 +167,16 @@ async function loadQuestions() {
       const repliesList = document.createElement("div");
       repliesList.id = `repliesList-${questionId}`;
       li.appendChild(repliesList);
+      repliesList.classList = "replyContainer";
 
+      loadReplies(questionId);
       // Add reply form
       if (user && user.uid === userId) {
         const replyForm = document.createElement("form");
         replyForm.id = `replyForm-${questionId}`;
         replyForm.innerHTML = `
-          <input type="text" id="replyText-${questionId}" placeholder="Write your reply" />
-          <button type="submit">Submit Reply</button>
+          <input type="text" id="replyText-${questionId}" class="replyText" placeholder="Reply..." />
+          <button type="submit" id="submitButton">Submit Reply</button>
         `;
 
         // Add event listener to the reply form
@@ -207,7 +219,7 @@ async function loadQuestions() {
         });
         li.appendChild(replyForm);
       }
-      // Append the reply form to the question list item (li)
+      loadReplies();
     });
   } catch (error) {
     console.error("Error fetching questions: ", error);
@@ -220,18 +232,23 @@ async function editQuestion(questionId, currentQuestionText) {
 
   // Create an input field with the current question text pre-filled
   const inputField = document.createElement("input");
+  inputField.id = "inputField";
   inputField.type = "text";
   inputField.value = currentQuestionText;
+  inputField.innerHTML = `<textarea id="question" name="question" rows="4"></textarea>
+`;
 
   const saveButton = document.createElement("button");
   saveButton.textContent = "Save";
+  saveButton.classList.add("saveButton");
 
   const cancelButton = document.createElement("button");
   cancelButton.textContent = "Cancel";
+  cancelButton.id = "cancelButton";
 
   // Remove the existing text and buttons
   questionDiv.innerHTML = ""; // Clear the question div
-
+  questionDiv.id = "questionDiv";
   // Add the new input field and buttons
   questionDiv.appendChild(inputField);
   questionDiv.appendChild(saveButton);
@@ -240,7 +257,6 @@ async function editQuestion(questionId, currentQuestionText) {
   // Handle saving the updated question
   saveButton.onclick = async function () {
     const updatedQuestionText = inputField.value.trim();
-
     if (!updatedQuestionText) {
       showMessage("Please provide a valid question.", "questionMessage");
       return;
@@ -328,8 +344,8 @@ function loadReplies(questionId) {
         li.textContent = reply;
         // Create a delete button for the reply
         const deleteButton = document.createElement("button");
-        deleteButton.textContent = "Delete";
-
+        deleteButton.innerHTML = '<i class="fas fa-trash"></i>'; // Delete icon
+        deleteButton.classList = "delete-btn";
         const user = auth.currentUser; // Get the current authenticated user
         if (user && user.uid === replyUserId) {
           // Compare with the question's userId
