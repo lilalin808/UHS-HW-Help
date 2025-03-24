@@ -6,7 +6,10 @@ import {
   orderBy,
   query,
 } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+} from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
 import { addDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
 import {
   deleteDoc,
@@ -29,6 +32,35 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app); // Firestore instance
 const auth = getAuth(); // Auth instance
 
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    try {
+      const usersRef = collection(db, "users");
+      const snapshot = getDocs(usersRef);
+
+      snapshot.forEach((doc) => {
+        const userData = doc.data();
+        const userEmail = userData.email;
+        const userRole = userData.role;
+      });
+    } catch (error) {
+      console.error("Error loading users:", error);
+      showMessage("Error loading users. Please try again.", "adminMessage");
+    }
+    // Check if the current user is an admin (you can hardcode the admin email or use Firestore)
+    checkIfTutor(userRole);
+  } else {
+    window.location.href = "index.html"; // Redirect to login if not authenticated
+  }
+});
+
+// Function to check if the user is an admin
+function checkIfTutor(role) {
+  if (role === "tutor") {
+    alert("You are not an tutor.");
+    window.location.href = "homepage.html"; // Redirect if the user is not an admin
+  }
+}
 // Function to load and display all submitted questions on the Tutor Dashboard
 async function loadQuestions() {
   const questionsList = document.getElementById("questionsList");
@@ -47,84 +79,67 @@ async function loadQuestions() {
       // Create the list item to display the question
       const li = document.createElement("div");
       li.textContent = question;
+      li.classList.add("questionContainer");
 
       const repliesList = document.createElement("div");
       repliesList.id = `repliesList-${questionId}`;
       li.appendChild(repliesList);
+      repliesList.classList = "replyContainer";
 
-      const replyButton = document.createElement("button");
-      replyButton.textContent = "Reply";
-      replyButton.onclick = function () {
-        // You can toggle visibility of a reply form here or open a modal
-        if (!document.getElementById(`replyForm-${questionId}`)) {
-          const replyForm = document.createElement("form");
-          replyForm.id = `replyForm-${questionId}`;
-          replyForm.innerHTML = `
-            <input type="text" id="replyText-${questionId}" placeholder="Write your reply" />
-            <button type="submit">Submit Reply</button>
-          `;
+      loadReplies(questionId);
+      // Add reply form
+      if (user && user.uid === userId) {
+        const replyForm = document.createElement("form");
+        replyForm.id = `replyForm-${questionId}`;
+        replyForm.innerHTML = `
+                <input type="text" id="replyText-${questionId}" class="replyText" placeholder="Reply..." />
+                <button type="submit" id="submitButton">Submit Reply</button>
+              `;
 
-          // Add event listener to the reply form
-          replyForm.addEventListener("submit", async (event) => {
-            event.preventDefault();
+        // Add event listener to the reply form
+        replyForm.addEventListener("submit", async (event) => {
+          event.preventDefault();
 
-            const replyText = document
-              .getElementById(`replyText-${questionId}`)
-              .value.trim(); // Get the reply text
+          const replyText = document
+            .getElementById(`replyText-${questionId}`)
+            .value.trim(); // Get the reply text
 
-            if (!replyText) {
-              showMessage(
-                "Please provide a valid reply and question ID.",
-                "replyMessage"
-              );
+          if (!replyText) {
+            showMessage("Please provide a valid reply.", "replyMessage");
+            return;
+          }
+
+          try {
+            if (!user) {
+              showMessage("You need to be logged in to reply.", "replyMessage");
               return;
             }
 
-            try {
-              const user = auth.currentUser;
-              if (!user) {
-                showMessage(
-                  "You need to be logged in to reply.",
-                  "replyMessage"
-                );
-                return;
+            // Add the reply to the subcollection of the specific question
+            await addDoc(
+              collection(db, "questions", questionId, "replies"), // Using subcollection "replies"
+              {
+                replyText: replyText,
+                userId: user.uid, // Associate the reply with the logged-in user
+                timestamp: Timestamp.now(),
               }
+            );
 
-              // Add the reply to the subcollection of the specific question
-              await addDoc(
-                collection(db, "questions", questionId, "replies"), // Using subcollection "replies"
-                {
-                  replyText: replyText,
-                  userId: user.uid, // Associate the reply with the logged-in user
-                  timestamp: Timestamp.now(),
-                }
-              );
+            showMessage("Reply submitted successfully!", "replyMessage");
+            document.getElementById(`replyText-${questionId}`).value = ""; // Clear the input field
 
-              showMessage("Reply submitted successfully!", "replyMessage");
-              document.getElementById(`replyText-${questionId}`).value = ""; // Clear the input field
-
-              loadReplies(questionId); // Reload replies
-            } catch (e) {
-              console.error("Error adding reply: ", e);
-              showMessage("Error submitting reply.", "replyMessage");
-            }
-          });
-
-          // Append the reply form to the question list item (li)
-
-          li.appendChild(replyForm);
-        }
-      };
-
-      li.appendChild(replyButton); // Append the Reply button
-
-      questionsList.appendChild(li);
-
-      loadReplies(questionId);
+            loadReplies(questionId); // Reload replies
+          } catch (e) {
+            console.error("Error adding reply: ", e);
+            showMessage("Error submitting reply.", "replyMessage");
+          }
+        });
+        li.appendChild(replyForm);
+      }
+      loadReplies();
     });
   } catch (error) {
     console.error("Error fetching questions: ", error);
-    showMessage("Error fetching questions.", "questionMessage");
   }
 }
 
@@ -153,7 +168,8 @@ function loadReplies(questionId) {
         li.textContent = reply;
         // Create a delete button for the reply
         const deleteButton = document.createElement("button");
-        deleteButton.textContent = "Delete";
+        deleteButton.innerHTML = `<i class="fas fa-trash"></i>`;
+        deleteButton.classList.add("delete-btn");
 
         const user = auth.currentUser; // Get the current authenticated user
         if (user && user.uid === replyUserId) {
