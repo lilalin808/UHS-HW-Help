@@ -1,11 +1,4 @@
-/* General Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Body & Container */
+/* Global Styles */
 body {
   font-family: "Courier New", Courier, monospace;
   background-color: #efe9e1; /* White background */
@@ -14,84 +7,252 @@ body {
   padding: 0;
 }
 
-.container {
-  width: 100%;
-  max-width: 800px;
-  padding: 20px;
-  margin: 0 auto;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* Header & Paragraph */
+h1,
+h2,
+p {
+  color: #444; /* Dark gray color */
+  text-align: center;
 }
 
-/* Title */
-h1 {
+/* Question Form */
+#questionForm {
+  padding: 20px;
+  max-width: 650px;
+  margin: auto;
   text-align: center;
-  color: #d32f2f; /* Red Color */
-  margin-bottom: 20px;
-  font-size: 30px;
+}
+
+/* Question Styling */
+#question {
+  display: flex;
+  box-sizing: border-box; /* Ensures padding and border are included in width */
+  border: 2px solid #d0cdc4;
+  padding: 20px;
+  max-width: 650px;
+  margin: 0 auto;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+#question:focus-within {
+  border-color: #8a2d35; /* Change border color on focus */
+}
+
+/* Edit and Delete Button Styles */
+.edit-btn,
+.delete-btn {
+  color: #777575; /* Text color */
+  padding: 0px;
+  font-size: 1.2rem;
+  border: none;
+  transition: background-color 0.3s;
+  outline: none;
+  background: none;
+  margin: 5px;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  color: #444;
+}
+
+/* Headings */
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
 }
 
 h2 {
-  color: #d32f2f;
-  margin-bottom: 15px;
+  font-size: 2rem;
+  margin-bottom: 0px;
+  color: #444;
+  text-align: center;
 }
 
-/* Questions List */
-ul#questionsList {
-  list-style-type: none;
-  padding-left: 0;
+p {
+  color: #333;
+  font-size: 1.2rem;
 }
 
-ul#questionsList li {
-  padding: 15px;
+/* Form Styling */
+label {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 10px;
+  display: block;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #341e1e;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  resize: vertical;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.replyText,
+#submitButton {
+  font-family: "Courier New", Courier, monospace;
+}
+
+#submit {
+  background-color: #8a2d35; /* Red button */
+  color: #fff; /* White text */
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 3px;
+  transition: background-color 0.3s;
+}
+
+#submit:hover {
+  background-color: #900; /* Darker red on hover */
+}
+
+/* Input Field Styles */
+#inputField {
+  font-family: "Courier New", Courier, monospace;
+  border: 2px solid #d0cdc4;
+  padding: 10px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 40px;
+  resize: vertical;
+}
+
+#inputField:focus {
+  border-color: #8a2d35;
+}
+
+/* List Styling */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+  border: 1px solid #ccc;
   margin: 10px 0;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 3px;
+}
+
+/* User Email & Logout */
+#loggedUserEmail {
+  font-weight: bold;
+  color: #c00; /* Red text for email */
+}
+
+.logoutButton {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center; /* Centers the button horizontally */
 }
 
-ul#questionsList li:hover {
-  background-color: #f1f1f1;
-  cursor: pointer;
+#logout {
+  outline: none;
+  background-color: #555;
+  color: #efe9e1;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 3px;
+  transition: background-color 0.3s;
 }
 
-ul#questionsList li button {
-  padding: 5px 10px;
+#logout:hover {
+  background-color: #444;
+}
+
+/* Question List Styling */
+#myQuestionsList,
+#submittedQuestionsList {
+  background-color: #fbf8f5;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 3px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#submittedQuestionsList {
+  margin-bottom: 30px;
+}
+
+/* Message Styling */
+#questionMessage,
+#replyMessage {
+  background-color: #f4f4f4;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 3px;
+}
+
+/* Links */
+a {
+  color: #c00;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Question Container */
+.questionContainer {
+  font-weight: bold;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 3px;
+  background-color: #f9f9f9;
+  line-height: 2;
+}
+
+/* Reply Container */
+.replyContainer {
+  font-weight: lighter;
+}
+
+/* Save and Cancel Buttons */
+.saveButton {
+  background-color: #8a2d35;
+  color: #fff;
+  font-size: 1rem;
+  padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background-color: #d32f2f;
-  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+}
+
+.saveButton:hover {
+  background-color: #751d24;
+}
+
+#cancelButton {
+  background-color: #f2f2f2;
+  color: #444;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-ul#questionsList li button:hover {
-  background-color: #b71c1c; /* Darker Red on hover */
-}
-
-/* Message Div */
-#questionMessage,
-#replyMessage {
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #f8d7da;
-  border: 1px solid #f5c6cb;
-  color: #721c24;
-  border-radius: 5px;
-  display: none;
-}
-
-/* Loader or Spinner for loading */
-#loader {
-  text-align: center;
-  margin-top: 50px;
-}
-
-#loader img {
-  width: 50px;
-  height: 50px;
+#cancelButton:hover {
+  background-color: #ddd;
 }
