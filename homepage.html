@@ -4,8 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Homepage</title>
-<link rel="stylesheet" href="styles/homepage.css"></style>
-    <script type="module" src="homepage.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="styles/homepage.css" />
   </head>
   <body>
     <div class="container">
@@ -16,17 +21,18 @@
         <button type="submit" id="submit">Submit Question</button>
       </form>
     </div>
-    <h2>my Questions</h2>
+    <h2>My Questions</h2>
     <ul id="myQuestionsList"></ul>
     <!-- For displaying the user's own questions -->
-    <p>submitted questions</p>
+    <h2>All Questions</h2>
     <ul id="submittedQuestionsList"></ul>
 
     <script src="homepage.js"></script>
-    <div>Email: <span id="loggedUserEmail"></span></div>
-    <a href="index.html">
-      <button id="logout">Logout</button>
-    </a>
+    <div class="logoutButton">
+      <a href="index.html">
+        <button id="logout">Logout</button>
+      </a>
+    </div>
 
     <!-- This link will take the user to the Tutor Dashboard -->
     <a id="tutorDashboardLink" href="dashboard.html" style="display: none"
@@ -36,5 +42,6 @@
     <div id="questionMessage" style="display: none"></div>
 
     <div id="replyMessage"></div>
+    <script type="module" src="homepage.js"></script>
   </body>
 </html>
