@@ -114,6 +114,7 @@ async function loadAssignedRoles() {
 
       userDiv.innerHTML = `
             <p><strong>${userEmail}</strong></p>
+            <p>${userRole}</p>
             `;
       usersList.appendChild(userDiv);
     });
