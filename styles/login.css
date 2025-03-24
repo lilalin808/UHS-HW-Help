@@ -1,0 +1,141 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Courier New", Courier, monospace;
+}
+
+body {
+  background-color: #efe9e1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  background-color: #fbf8f5;
+  border-radius: 3px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  text-align: center;
+  display: none;
+}
+
+h1.form-title {
+  font-size: 24px;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px 50px 10px 30px;
+  border: 2px solid #ddd;
+  border-radius: 3px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  outline: none;
+}
+
+.input-group input:focus {
+  border-color: #8a2d35; /* Change to blue when focused */
+}
+
+.input-group i {
+  position: absolute;
+  left: 10px;
+  top: 12px;
+  color: #888;
+}
+
+button.btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #8a2d35;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.btn:hover {
+  background-color: #751d24;
+}
+
+.messageDiv {
+  padding: 10px;
+  background-color: #f2dede;
+  border: 1px solid #ebcccc;
+  color: #8a2d35;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  display: none;
+}
+
+.or {
+  margin: 20px 0;
+  font-weight: bold;
+  color: #333;
+}
+
+.links {
+  font-size: 14px;
+}
+
+.links p {
+  margin-bottom: 10px;
+}
+
+.links button {
+  background: none;
+  border: none;
+  color: #8a2d35;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.links button:hover {
+  text-decoration: underline;
+}
+
+.recover {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.recover a {
+  color: #8a2d35;
+  text-decoration: none;
+}
+
+.recover a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+  .container {
+    padding: 20px;
+  }
+
+  h1.form-title {
+    font-size: 20px;
+  }
+
+  .input-group input,
+  .input-group label,
+  button.btn {
+    font-size: 14px;
+  }
+}

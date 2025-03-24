@@ -1,0 +1,97 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body & Container */
+body {
+  font-family: "Courier New", Courier, monospace;
+  background-color: #efe9e1; /* White background */
+  color: #333; /* Dark gray text */
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+h1 {
+  text-align: center;
+  color: #d32f2f; /* Red Color */
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+
+h2 {
+  color: #d32f2f;
+  margin-bottom: 15px;
+}
+
+/* Questions List */
+ul#questionsList {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+ul#questionsList li {
+  padding: 15px;
+  margin: 10px 0;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul#questionsList li:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+ul#questionsList li button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #d32f2f;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+ul#questionsList li button:hover {
+  background-color: #b71c1c; /* Darker Red on hover */
+}
+
+/* Message Div */
+#questionMessage,
+#replyMessage {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+  border-radius: 5px;
+  display: none;
+}
+
+/* Loader or Spinner for loading */
+#loader {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#loader img {
+  width: 50px;
+  height: 50px;
+}

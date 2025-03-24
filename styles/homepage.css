@@ -1,0 +1,274 @@
+body {
+  font-family: "Courier New", Courier, monospace;
+  background-color: #efe9e1; /* White background */
+  color: #333; /* Dark gray text */
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+p {
+  color: #444; /* Red color for headings */
+  text-align: center;
+}
+#questionForm {
+  padding: 20px;
+  max-width: 650px;
+  margin: auto;
+  text-align: center;
+}
+#question {
+  display: flex;
+  box-sizing: border-box; /* Ensures padding and border are included in the width */
+  border: 2px solid #d0cdc4;
+  padding: 20px;
+  max-width: 650px;
+  margin: 0 auto;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+#question:focus-within {
+  border-color: #8a2d35; /* Change border color on focus */
+}
+
+.edit-btn {
+  color: #777575; /* Text color */
+  padding: 0px 0px; /* Adjust the padding */
+  font-size: 1.2rem;
+  border: none; /* Remove border */
+  transition: background-color 0.3s;
+  outline: none; /* Remove the outline when clicked/focused */
+  background: none; /* Optional: Add this if you want to remove background */
+  margin: 5px;
+}
+
+.edit-btn:hover {
+  color: #444;
+}
+
+.delete-btn {
+  color: #777575; /* Text color */
+  padding: 0px 0px; /* Adjust the padding */
+  font-size: 1.2rem;
+  border: none; /* Remove border */
+  transition: background-color 0.3s;
+  outline: none; /* Remove the outline when clicked/focused */
+  background: none; /* Optional: Add this if you want to remove background */
+}
+
+.delete-btn:hover {
+  color: #444;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 0px;
+  color: #444; /* Red color */
+  text-align: center;
+}
+
+p {
+  color: #333;
+  font-size: 1.2rem;
+}
+
+/* Form Styling */
+label {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 10px;
+  display: block;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #341e1e;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  resize: vertical;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.replyText,
+#submitButton {
+  font-family: "Courier New", Courier, monospace;
+}
+#submit {
+  background-color: #8a2d35; /* Red button */
+  color: #fff; /* White text */
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 1.2rem;
+  font-family: "Courier New", Courier, monospace;
+  border: none;
+  border-radius: 3px;
+  transition: background-color 0.3s;
+}
+
+#submit:hover {
+  background-color: #900; /* Darker red on hover */
+}
+
+#inputField {
+  font-family: "Courier New", Courier, monospace;
+}
+/* List Styling */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin: 10px 0;
+  border-radius: 3px;
+}
+
+/* User Email & Logout */
+#loggedUserEmail {
+  font-weight: bold;
+  color: #c00; /* Red text for email */
+}
+.logoutButton {
+  display: flex;
+  justify-content: center; /* Centers the button horizontally */
+}
+
+#logout {
+  outline: none; /* Remove the outline when clicked/focused */
+  background-color: #555; /* Black button */
+  color: #efe9e1; /* White text */
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  font-family: "Courier New", Courier, monospace;
+  border: none;
+  border-radius: 3px;
+  transition: background-color 0.3s;
+}
+#logout:hover {
+  background-color: #444;
+}
+
+#myQuestionsList {
+  background-color: #fbf8f5;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 3px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for a more polished look */
+  max-width: 750px;
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 60px;
+}
+
+#submittedQuestionsList {
+  background-color: #fbf8f5;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 3px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for a more polished look */
+  max-width: 750px;
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+
+/* Message Styling */
+#questionMessage,
+#replyMessage {
+  background-color: #f4f4f4;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 3px;
+}
+
+/* Links */
+a {
+  color: #c00;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.questionContainer {
+  font-weight: bold;
+  border: 1px solid #ddd; /* Set the border color */
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 3px; /* Optional: Round the corners */
+  background-color: #f9f9f9; /* Optional: Light background color for contrast */
+  line-height: 2;
+}
+.replyContainer {
+  font-weight: lighter;
+}
+
+/* Style the input field */
+#inputField {
+  border: 2px solid #d0cdc4;
+  align-self: center;
+  padding: 10px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  display: block;
+  width: 100%;
+  box-sizing: border-box; /* Ensures padding and border are included in the width */
+  min-height: 40px; /* Optional: Add a minimum height if you'd like */
+  resize: vertical;
+}
+
+/* Focus styling for input field */
+#inputField:focus {
+  border-color: #8a2d35; /* Change border color on focus */
+}
+
+/* Style the save button */
+.saveButton {
+  background-color: #8a2d35; /* Red button color */
+  color: #fff; /* White text */
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px; /* Add space between Save and Cancel */
+}
+
+/* Hover effect for save button */
+.saveButton:hover {
+  background-color: #751d24;
+}
+
+/* Style the cancel button */
+#cancelButton {
+  background-color: #f2f2f2; /* Light gray background */
+  color: #444; /* Dark text color */
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for cancel button */
+#cancelButton:hover {
+  background-color: #ddd; /* Darken gray on hover */
+}
