@@ -4,17 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Homework Help</title>
-    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/index.css" />
   </head>
   <body>
+    <h1>Homework Help</h1>
+    <p>Sign in to submit questions</p>
     <div class="container" id="signupContainer">
       <a href="login.html">
-        <button id="signup-button">Sign Up/ sign in</button>
+        <button id="signup-button">Sign Up / Sign in</button>
       </a>
-    </div>
-    <div class="container">
-      <h1>Homework Help</h1>
-      <p>sign in to submit questions</p>
     </div>
 
     <!-- For displaying the user's own questions -->
@@ -23,9 +21,9 @@
 
     <!-- For displaying all questions on the dashboard -->
     <div class="container">
-      <h2>Submitted Questions</h2>
-      <div id="allQuestionsContainer">all questions</div>
+      <h2>Questions</h2>
+      <div id="questionsList"></div>
     </div>
-    <script src="index.js"></script>
+    <script type="module" src="index.js"></script>
   </body>
 </html>
